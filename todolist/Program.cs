@@ -10,6 +10,10 @@ namespace todolist
     {
         static void Main(string[] args)
         {
+            int a = 3;
+            int b = 72;
+
+            int c = a + b;
         }
     }
 }
