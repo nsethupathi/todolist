@@ -9,17 +9,27 @@ namespace todolist
 {
     class DatabaseConnection
     {
-        MySqlConnection connectionstring = new MySqlConnection("server=localhost;user id=root;database=independent");
+        // data
+        protected MySqlConnection conn; //= new MySqlConnection("server=localhost;userid=root; password = !nspiration; database=independent");
 
+        // default constructor
+        public DatabaseConnection()
+        {
+            this.conn = new MySqlConnection("server=localhost;userid=root; password = !nspiration; database=independent");
+        }
         public void OpenConnection()
         {
-            connectionstring.Open();
+            this.conn.Open();
         }
 
         public void CloseConnection()
         {
-            connectionstring.Close();
+            this.conn.Close();
         }
 
+        public MySqlConnection GetConn()
+        {
+            return this.conn;
+        }
     }
 }
