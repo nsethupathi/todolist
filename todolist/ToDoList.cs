@@ -36,7 +36,9 @@ namespace todolist
             InsertCmd.CommandText = "INSERT INTO tasks(name) VALUES(@name)";
             InsertCmd.Prepare();
 
-            InsertCmd.Parameters.AddWithValue("@name", "Walk the dog");
+            Console.WriteLine("\nEnter task to insert...");
+            string input = Console.ReadLine();
+            InsertCmd.Parameters.AddWithValue("@name", input);
             InsertCmd.ExecuteNonQuery();
             Console.ReadKey();
         }
@@ -48,7 +50,9 @@ namespace todolist
             DeleteCmd.CommandText = "DELETE FROM tasks WHERE name = @name";
             DeleteCmd.Prepare();
 
-            DeleteCmd.Parameters.AddWithValue("@name", "Walk the dog");
+            Console.WriteLine("\nEnter task to delete...");
+            string input = Console.ReadLine();
+            DeleteCmd.Parameters.AddWithValue("@name", input);
             DeleteCmd.ExecuteNonQuery();
             Console.ReadKey();
         }
@@ -72,15 +76,21 @@ namespace todolist
             // create table
             this.CreateTable();
 
-            // insert element
-            this.Insert();
+            while (true)
+            {
+                Console.WriteLine("\nPick one of the following...\ninsert \ndelete \nquit\n");
+                string input = Console.ReadLine();
 
-            // delete element
-            this.Delete();
+                if (input.Equals("insert")) this.Insert();
+
+                else if (input.Equals("delete")) this.Delete();
+
+                else if (input.Equals("quit")) break;
+
+            }
 
             // drop table
-            this.DropTable();
-    
+            this.DropTable();    
 
 
             // close connection
