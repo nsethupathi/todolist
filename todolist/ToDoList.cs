@@ -26,7 +26,7 @@ namespace todolist
             CreateCmd.Prepare();
 
             CreateCmd.ExecuteNonQuery();
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         private void Insert()
@@ -40,7 +40,7 @@ namespace todolist
             string input = Console.ReadLine();
             InsertCmd.Parameters.AddWithValue("@name", input);
             InsertCmd.ExecuteNonQuery();
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         private void Delete()
@@ -54,7 +54,7 @@ namespace todolist
             string input = Console.ReadLine();
             DeleteCmd.Parameters.AddWithValue("@name", input);
             DeleteCmd.ExecuteNonQuery();
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         private void DropTable()
@@ -65,7 +65,7 @@ namespace todolist
             DropCmd.Prepare();
 
             DropCmd.ExecuteNonQuery();
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         public void Run()
@@ -78,6 +78,17 @@ namespace todolist
 
             while (true)
             {
+                MySqlCommand selectData = db.GetConn().CreateCommand();
+                selectData.CommandText = "SELECT name FROM tasks ORDER BY task_id ASC";
+                MySqlDataReader rdr = selectData.ExecuteReader();
+                Console.WriteLine("\n\nCurrent items:");
+                while (rdr.Read())
+                {
+                    string name = (string)rdr["name"];
+                    Console.WriteLine(name);
+                }
+                rdr.Close();
+
                 Console.WriteLine("\nPick one of the following...\ninsert \ndelete \nquit\n");
                 string input = Console.ReadLine();
 
