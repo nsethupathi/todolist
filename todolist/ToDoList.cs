@@ -26,7 +26,6 @@ namespace todolist
             CreateCmd.Prepare();
 
             CreateCmd.ExecuteNonQuery();
-            //Console.ReadKey();
         }
 
         private void Insert()
@@ -40,7 +39,6 @@ namespace todolist
             string input = Console.ReadLine();
             InsertCmd.Parameters.AddWithValue("@name", input);
             InsertCmd.ExecuteNonQuery();
-            //Console.ReadKey();
         }
 
         private void Delete()
@@ -54,7 +52,6 @@ namespace todolist
             string input = Console.ReadLine();
             DeleteCmd.Parameters.AddWithValue("@name", input);
             DeleteCmd.ExecuteNonQuery();
-            //Console.ReadKey();
         }
 
         private void DropTable()
@@ -65,7 +62,6 @@ namespace todolist
             DropCmd.Prepare();
 
             DropCmd.ExecuteNonQuery();
-            //Console.ReadKey();
         }
 
         public void Run()

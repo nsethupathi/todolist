@@ -10,7 +10,7 @@ namespace todolist
     class DatabaseConnection
     {
         // data
-        protected MySqlConnection conn; //= new MySqlConnection("server=localhost;userid=root; password = !nspiration; database=independent");
+        private MySqlConnection conn;
 
         // default constructor
         public DatabaseConnection()
